@@ -1,0 +1,19 @@
+language: node_js
+node_js: 8
+
+script:
+- npm run lint
+- npm run nsp
+
+branches:
+  only:
+  - master
+
+deploy:
+  provider: npm
+  email: billing.media@schibsted.media
+  on:
+    branch: master
+    node: '8'
+  api_key:
+    secure: BYpFofoCyFijmR9Vp/rDHri2WAWIKY14cj3csVE74DTmZvUYQZljC3cCPjdrMYh1bRX9vHada3CxLpRTpV8/qpnA4RAFyMzGzI084jJZLZBiTh1rkyU3jLi0tvrPrrNLnBaiXA2TfASMrmXP4czblTpZOTwDkfdDaYCay/vUqAWyeyPyp8lGtZTaqZ8rmntMAQdBZr8HJid7R21l6uET1s8PKfqf/QWBta5O+voTyWXPEtyxG9NO9d/B7zv54To3X01wEctaDhRLv+yO+FOuxCREp0hOm7uZ1tff59FrziCBFVm73UKyvGSnQ6h5JLDTZH6Jpg8fMio9eJ/kdR1ke7djxeAGlNy0MTzfJwQ28kEQOhEujTMv+18N1o3Phq3owKW7cL8atBF/0kqdTHcxY/0DpiFKImO1e3GqKOrUsqqg9C0pOPBWqkOh1sofCVIDR56qyYAlL+SGHZQ6jyDReJPZ6rX6pxG/vqDWGA3nzZw0Fe3G8rJDnssxCD/zzqMTEFfzsZTmd/vx/1khp1xdN4xYYlnORc/kt80N3VwUls5f4kj4NnxOmDUUJ5Dq3ogFvXITGh8eR2d0eB6B/4LTQWB5PrukgwxwWlyJbBo8TlzH1eTDEw2KDWbg23BU+51nP4Qi/rJAEJC4jMIU1qP3ZAOEJDfYeUax9NH39Hhe4GU=

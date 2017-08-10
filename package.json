@@ -1,0 +1,38 @@
+{
+    "name": "@plan3-relate/hapi-enforce-https",
+    "version": "0.0.1",
+    "description": "Hapi plugin which forces to use HTTPS protocol in selected endpoints",
+    "main": "index.js",
+    "scripts": {
+        "lint": "eslint .",
+        "nsp": "nsp check"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/plan3/hapi-enforce-https.git"
+    },
+    "keywords": [
+        "hapi",
+        "https"
+    ],
+    "author": "Schibsted Media",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/plan3/hapi-enforce-https/issues"
+    },
+    "homepage": "https://github.com/plan3/hapi-enforce-https#readme",
+    "dependencies": {
+        "boom": "^5.2.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "devDependencies": {
+        "chai": "4.1.0",
+        "eslint": "4.2.0",
+        "eslint-config-vgno": "7.0.0",
+        "eslint-plugin-promise": "3.5.0",
+        "mocha": "3.5.0",
+        "nsp": "2.6.3"
+    }
+}
