@@ -1,9 +1,10 @@
 {
     "name": "@plan3-relate/hapi-enforce-https",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Hapi plugin which forces to use HTTPS protocol in selected endpoints",
     "main": "index.js",
     "scripts": {
+        "test": "mocha test.js",
         "lint": "eslint .",
         "nsp": "nsp check"
     },
@@ -32,6 +33,7 @@
         "eslint": "4.2.0",
         "eslint-config-vgno": "7.0.0",
         "eslint-plugin-promise": "3.5.0",
+        "hapi": "^16.5.2",
         "mocha": "3.5.0",
         "nsp": "2.6.3"
     }
