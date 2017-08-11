@@ -13,7 +13,7 @@ const boom = require('boom');
  * @param {Function} next
  * @returns {Function}
  */
-module.exports.register = function(server, options, next) {
+exports.register = function(server, options, next) {
     if (options.enforceHttps) {
         server.ext('onRequest', function(request, reply) {
             if (request.connection.info.protocol !== 'https'
@@ -27,6 +27,6 @@ module.exports.register = function(server, options, next) {
     return next();
 };
 
-module.exports.register.attributes = {
+exports.register.attributes = {
     pkg: require('./package.json')
 };
