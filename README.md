@@ -10,7 +10,7 @@ There's already [a plugin for that](https://www.npmjs.com/package/hapi-require-h
 
 ## Installtion
 
-`npm install hapi-enforce-https`
+`npm install @plan3-relate/hapi-enforce-https`
 
 
 ## Usage

@@ -57,9 +57,9 @@ describe('Hapi Enforce HTTPS Plugin tests', function() {
         it(`allows or blocks the resource depending on a given configuration #${i}`, function() {
             const server = new hapi.Server();
             server.connection();
-            server.register({ register: plugin, options: dataSet.options });
-            server.route({ method: 'GET', path: '/', handler: (request, reply) => reply('Hello!') });
-            return server.inject({ url: '/', headers: dataSet.headers })
+            return server.register({ register: plugin, options: dataSet.options })
+                .then(() => server.route({ method: 'GET', path: '/', handler: (request, reply) => reply('Hello!') }))
+                .then(() => server.inject({ url: '/', headers: dataSet.headers }))
                 .then(dataSet.expect);
         });
     });
