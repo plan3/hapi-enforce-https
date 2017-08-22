@@ -1,6 +1,6 @@
 {
     "name": "@plan3-relate/hapi-enforce-https",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Hapi plugin which forces to use HTTPS protocol in selected endpoints",
     "main": "index.js",
     "scripts": {
