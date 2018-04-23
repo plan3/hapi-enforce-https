@@ -53,6 +53,23 @@ describe('Hapi Enforce HTTPS Plugin tests', function() {
             should.equal(response.statusCode, 200);
             should.equal(response.result, 'Hello!');
         }
+    },
+    {
+        options: { enforceHttps: true, excludePaths: ['/'] },
+        headers: { 'x-forwarded-proto': 'http' },
+        expect: (response) => {
+            should.equal(response.statusCode, 200);
+            should.equal(response.result, 'Hello!');
+        }
+    },
+    {
+        options: { enforceHttps: true, excludePaths: ['/health'] },
+        headers: { 'x-forwarded-proto': 'http' },
+        expect: (response) => {
+            should.equal(response.statusCode, 400);
+            should.equal(response.result.error, 'Bad Request');
+            should.equal(response.result.message, 'HTTPS required');
+        }
     }].forEach((dataSet, i) => {
         it(`allows or blocks the resource depending on a given configuration #${i}`, function() {
             const server = new hapi.Server();

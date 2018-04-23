@@ -5,6 +5,7 @@ const boom = require('boom');
 /**
  * @typedef {Object} Options
  * @property {Boolean} enforceHttps
+ * @property {Array} excludePaths
  */
 
 /**
@@ -16,7 +17,8 @@ const boom = require('boom');
 exports.register = function(server, options, next) {
     if (options.enforceHttps) {
         server.ext('onRequest', function(request, reply) {
-            if (request.connection.info.protocol !== 'https'
+            const pathIsExcluded = options.excludePaths && options.excludePaths.includes(request.path);
+            if (!pathIsExcluded && request.connection.info.protocol !== 'https'
                 && request.raw.req.headers['x-forwarded-proto'] !== 'https') {
                 return reply(boom.badRequest('HTTPS required'));
             }
