@@ -18,8 +18,7 @@ describe('Hapi Enforce HTTPS Plugin tests', function() {
     }].forEach((dataSet, i) => {
         it(`required valid input as a configuration object #${i}`, function() {
             const server = new hapi.Server();
-            server.connection();
-            return server.register({register: plugin, options: dataSet.options})
+            return server.register({plugin, options: dataSet.options})
                 .then(dataSet.expect);
         });
     });
@@ -73,9 +72,8 @@ describe('Hapi Enforce HTTPS Plugin tests', function() {
     }].forEach((dataSet, i) => {
         it(`allows or blocks the resource depending on a given configuration #${i}`, function() {
             const server = new hapi.Server();
-            server.connection();
-            return server.register({ register: plugin, options: dataSet.options })
-                .then(() => server.route({ method: 'GET', path: '/', handler: (request, reply) => reply('Hello!') }))
+            return server.register({plugin, options: dataSet.options})
+                .then(() => server.route({ method: 'GET', path: '/', handler: () => 'Hello!' }))
                 .then(() => server.inject({ url: '/', headers: dataSet.headers }))
                 .then(dataSet.expect);
         });

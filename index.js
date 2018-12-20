@@ -11,24 +11,19 @@ const boom = require('boom');
 /**
  * @param {Object} server
  * @param {Options} options
- * @param {Function} next
- * @returns {Function}
  */
-exports.register = function(server, options, next) {
-    if (options.enforceHttps) {
-        server.ext('onRequest', function(request, reply) {
-            const pathIsExcluded = options.excludePaths && options.excludePaths.includes(request.path);
-            if (!pathIsExcluded && request.connection.info.protocol !== 'https'
-                && request.raw.req.headers['x-forwarded-proto'] !== 'https') {
-                return reply(boom.badRequest('HTTPS required'));
-            }
-
-            return reply.continue();
-        });
-    }
-    return next();
-};
-
-exports.register.attributes = {
+exports.plugin = {
+    register: (server, options) => {
+        if (options.enforceHttps) {
+            server.ext('onRequest', function(request, h) {
+                const pathIsExcluded = options.excludePaths && options.excludePaths.includes(request.path);
+                if (!pathIsExcluded && request.info.protocol !== 'https'
+                    && request.raw.req.headers['x-forwarded-proto'] !== 'https') {
+                    throw boom.badRequest('HTTPS required');
+                }
+                return h.continue;
+            });
+        }
+    },
     pkg: require('./package.json')
 };
